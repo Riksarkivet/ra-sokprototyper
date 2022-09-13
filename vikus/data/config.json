@@ -1,0 +1,66 @@
+{
+  "project": {
+    "name": "Handritade Kartverk",
+    "quality": 1
+ },
+  "loader": {
+    "info": "data/info.md",
+    "timeline": "data/timeline.csv",
+    "items": "data/data.csv",
+    "textures": {
+      "medium": {
+        "size":256,
+        "url": "data/sprites/spritesheet.json"
+      },
+      "detail": {
+        "size": 1024,
+        "url": "data/1024/"
+      }
+    }
+  },
+  "style": {
+    "fontColor": "#0D5C91",
+    "fontColorActive": "#000000",
+    "textShadow": "none",
+    "canvasBackground": "#ffffff",
+    "timelineBackground": "#0D5C91",
+    "timelineFontColor": "#ffffff",
+    "backgroundHeader": "#035151",
+    "fontColorHeader": "#dc8283",
+    "detailBackground": "#EEE",
+    "infoBackground": "#0D5C91",
+    "infoFontColor": "#fff",
+    "searchbarBackground": "#0D5C91"
+  },
+  "projection": {
+    "columns": 5
+  },
+  "detail": {
+    "structure": [
+      {
+        "name": "Datering",
+        "source": "_realyear",
+        "display": "column",
+        "type": "text"
+      },
+      {
+        "name": "Titel",
+        "source": "_title",
+        "display": "column",
+        "type": "text"
+      },
+      {
+        "name": "Serie",
+        "source": "_series",
+        "display": "column",
+        "type": "text"
+      },
+      {
+        "name": "Källa",
+        "source": "_source",
+        "display": "column",
+        "type": "text"
+      }
+    ]
+  }
+}
