@@ -1,0 +1,1 @@
+for file in *; do (jsonld expand $file) > ${file/.jsonld/_expanded.jsonld} ; done

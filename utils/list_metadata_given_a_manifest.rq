@@ -1,0 +1,20 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX as: <http://www.w3.org/ns/activitystreams#>
+PREFIX doap: <http://usefulinc.com/ns/doap#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX schema: <https://schema.org/>
+PREFIX exif: <http://www.w3.org/2003/12/exif/ns#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX oa: <http://www.w3.org/ns/oa#>
+PREFIX iiif: <http://iiif.io/api/presentation/3#>
+PREFIX dcmitype: <http://purl.org/dc/dcmitype/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT * WHERE {
+  <https://lbiiif.riksarkivet.se/arkis!K0037920/manifest> iiif:metadataEntries/rdf:rest*/rdf:first ?value_node .
+  ?value_node rdf:value ?value ;
+              rdfs:label ?label .
+
+  FILTER(LANGMATCHES(LANG(?label), 'sv'))
+}

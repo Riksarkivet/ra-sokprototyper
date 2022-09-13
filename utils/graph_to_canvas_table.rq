@@ -1,0 +1,67 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX as: <http://www.w3.org/ns/activitystreams#>
+PREFIX doap: <http://usefulinc.com/ns/doap#>
+PREFIX dc: <http://purl.org/dc/elements/1.1/>
+PREFIX schema: <https://schema.org/>
+PREFIX exif: <http://www.w3.org/2003/12/exif/ns#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX oa: <http://www.w3.org/ns/oa#>
+PREFIX iiif: <http://iiif.io/api/presentation/3#>
+PREFIX dcmitype: <http://purl.org/dc/dcmitype/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+SELECT DISTINCT ?manifest ?archive ?date ?series ?title ?ref_code ?source_ref ?canvas WHERE {
+  ?manifest a iiif:Manifest .
+
+  OPTIONAL {
+    ?manifest iiif:metadataEntries/rdf:rest*/rdf:first ?metadata_entry_1 .
+    ?metadata_entry_1 rdf:value ?entry_value_1 ;
+                    rdfs:label ?entry_label_1 .
+    FILTER(?entry_label_1 = 'Datering'@sv)
+    BIND(IF(BOUND(?entry_value_1), ?entry_value_1, False) AS ?date)
+  }
+
+  OPTIONAL {
+    ?manifest iiif:metadataEntries/rdf:rest*/rdf:first ?metadata_entry_2 .
+    ?metadata_entry_2 rdf:value ?entry_value_2 ;
+                    rdfs:label ?entry_label_2 .
+    FILTER(?entry_label_2 = 'Arkiv'@sv)
+    BIND(IF(BOUND(?entry_value_2), ?entry_value_2, False) AS ?archive)
+  }
+
+  OPTIONAL {
+    ?manifest iiif:metadataEntries/rdf:rest*/rdf:first ?metadata_entry_3 .
+    ?metadata_entry_3 rdf:value ?entry_value_3 ;
+                    rdfs:label ?entry_label_3 .
+    FILTER(?entry_label_3 = 'Serie'@sv)
+    BIND(IF(BOUND(?entry_value_3), ?entry_value_3, False) AS ?series)
+  }
+ 
+  OPTIONAL {
+    ?manifest iiif:metadataEntries/rdf:rest*/rdf:first ?metadata_entry_4 .
+    ?metadata_entry_4 rdf:value ?entry_value_4 ;
+                    rdfs:label ?entry_label_4 .
+    FILTER(?entry_label_4 = 'Titel'@sv)
+    BIND(IF(BOUND(?entry_value_4), ?entry_value_4, False) AS ?title)
+  }
+  
+  OPTIONAL {
+    ?manifest iiif:metadataEntries/rdf:rest*/rdf:first ?metadata_entry_5 .
+    ?metadata_entry_5 rdf:value ?entry_value_5 ;
+                    rdfs:label ?entry_label_5 .
+    FILTER(?entry_label_5 = 'Referenskod'@sv)
+    BIND(IF(BOUND(?entry_value_5), ?entry_value_5, False) AS ?ref_code)
+  }
+  
+  OPTIONAL {
+    ?manifest iiif:metadataEntries/rdf:rest*/rdf:first ?metadata_entry_6 .
+    ?metadata_entry_6 rdf:value ?entry_value_6 ;
+                    rdfs:label ?entry_label_6 .
+    FILTER(?entry_label_6 = 'Källhänvisning'@sv)
+    BIND(IF(BOUND(?entry_value_6), ?entry_value_6, False) AS ?source_ref)
+  }
+  
+  ?manifest as:items/rdf:rest*/rdf:first ?canvas .
+}
+
