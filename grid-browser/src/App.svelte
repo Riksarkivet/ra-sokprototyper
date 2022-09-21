@@ -20,7 +20,7 @@
 			if (item.type == "Canvas") {
 				let image = item.id.replace(
 					"/canvas",
-					"/square/200,/0/default.jpg"
+					"/square/350,/0/default.jpg"
 				);
 				let link = item.id
 					.replace("/canvas", "")
