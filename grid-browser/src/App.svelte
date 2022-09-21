@@ -76,11 +76,13 @@
 </script>
 
 <main>
-	<h1>{title}!</h1>
+	<nav>
+		<h1>{title}</h1>
+	</nav>
 	{#if items.length > 0}
 		<div class="container">
 			{#each items as item}
-				<a href={item.link}>
+				<a href={item.link} target="_blank">
 					<img src={item.image} alt="{item.title}" />
 				</a>
 			{/each}
@@ -91,6 +93,11 @@
 </main>
 
 <style>
+nav {
+	padding: 0 10px;
+	border-bottom: 6px solid var(--ra-blue-main);
+}
+
 .container {
 	display: grid;
 	grid-template-columns: repeat(8, 1fr);

@@ -14,8 +14,8 @@
         height: 64px;
         margin: 8px;
         border-radius: 50%;
-        border: 6px solid #00a1deb0;
-        border-color: #00a1deb0 transparent #00a1deb0 transparent;
+        border: 6px solid var(--ra-blue-main);
+        border-color: var(--ra-blue-main) transparent var(--ra-blue-main) transparent;
         animation: spinner 1.2s linear infinite;
     }
     @keyframes spinner {

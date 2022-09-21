@@ -1,9 +1,27 @@
+:root {
+	--ra-font-color: #464646; /* #000 is common as well */
+	--ra-font-family: "Open Sans",Helvetica,sans-serif; /* This is from NAD riksarkivet.se uses a different set */
+	--ra-font-family-headers: Roboto,Open Sans,Helvetica,sans-serif; /* not sure if these fonts are intentional considering all the overrides*/
+	--ra-font-size: 14px; /* 16px is common as well */
+	--ra-border-color: #ccd4e4;
+	--ra-blue-main: #0d5c91;
+	
+}
+
 html, body {
 	width: 100%;
 	height: 100%;
 }
 
 body {
-	color: #333;
+	color: var(--ra-font-color);
+	font-family: var(--ra-font-family);
+	font-size: var(--ra-font-size);
 	margin: 0;
+}
+
+h1, h2, h3 {
+	font-family: var(--ra-font-family-headers);
+	line-height: 1.3;
+	font-weight: 500;
 }
