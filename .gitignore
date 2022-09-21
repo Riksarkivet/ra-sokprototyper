@@ -2,3 +2,5 @@ vikus/**/*.jpg
 vikus/**/*.png
 vikus/data/sprites/*
 vikus/queryResults.csv
+/**/node_modules/*
+/**/public/build/*
