@@ -1,5 +1,6 @@
 <script>
-	import Loader from "./Loader.svelte";
+	import DateFilter from "./DateFilter.svelte";
+import Loader from "./Loader.svelte";
 
 	let items = [];
 	function loadFromManifest(data) {
@@ -73,11 +74,20 @@
 
 	let manifest = new URLSearchParams(window.location.search).get("manifest");
 	traverse(manifest);
+	let date = new URLSearchParams(window.location.search).get("date");
+
+	function dateFilterChanged(event) {
+		let navigation = event.detail.action;
+		console.log(navigation);
+	}
 </script>
 
 <main>
 	<nav>
 		<h1>{title}</h1>
+		{#if date}
+			<DateFilter decade={1730} on:navigation="{dateFilterChanged}"/>
+		{/if}
 	</nav>
 	{#if items.length > 0}
 		<div class="container">
