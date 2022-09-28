@@ -1,12 +1,15 @@
 <script>
 	import DateFilter from "./DateFilter.svelte";
-import Loader from "./Loader.svelte";
+	import Loader from "./Loader.svelte";
+	import { beforeUpdate } from 'svelte';
 
-	let items = [];
+	let allItems = [];
+	let activeItems = [];
 	function loadFromManifest(data) {
 		let title;
 		let source;
 		let date;
+		let decade;
 		data.metadata.forEach((item) => {
 			if (item.label.sv[0] == "Titel") {
 				title = item.value.none[0];
@@ -14,6 +17,13 @@ import Loader from "./Loader.svelte";
 				source = item.value.none[0];
 			} else if (item.label.sv[0] == "Datering") {
 				date = item.value.none[0];
+
+				// we allways try to get the decade as to avoid computing it on the fly during filtering
+				if (date.length == 4) { // parseInt is too forgiving on its own
+					decade = Math.floor(parseInt(date)/10)*10;
+				} else {
+					decade = null;
+				}
 			}
 		});
 
@@ -29,14 +39,16 @@ import Loader from "./Loader.svelte";
 						"https://lbiiif.riksarkivet.se/arkis!",
 						"https://sok.riksarkivet.se/bildvisning/"
 					);
-				items.push({
+					allItems.push({
 					title: title,
 					source: source,
 					date: date,
 					image: image,
 					link: link,
+					decade: decade,
 				});
-				items = items; // for the Svelte compiler https://svelte.dev/tutorial/updating-arrays-and-objects
+				allItems = allItems; // for the Svelte compiler https://svelte.dev/tutorial/updating-arrays-and-objects
+				activeItems = allItems; // we set all items as active to trigger beforeUpdate which will preform filtering
 			}
 		});
 	}
@@ -69,9 +81,8 @@ import Loader from "./Loader.svelte";
 						}
 					}
 				}
-			});
+			})
 	}
-
 	let manifest = new URLSearchParams(window.location.search).get("manifest");
 	
 	if (manifest) {
@@ -95,6 +106,21 @@ import Loader from "./Loader.svelte";
 
 	let date = new URLSearchParams(window.location.search).get("date");
 
+	let activeDecade = 0;
+	let decades;
+	beforeUpdate(() => {
+		if (date) {
+			// find the median existing decade in items
+			decades = allItems.map(item => item.decade).sort();
+			activeDecade = decades[Math.floor(decades.length / 2)];
+
+			activeItems = allItems.filter(item => item.decade === activeDecade);
+			console.log(activeItems)
+		} else {
+			activeItems = allItems;
+		}
+	});
+
 	function dateFilterChanged(event) {
 		let navigation = event.detail.action;
 		console.log(navigation);
@@ -105,12 +131,12 @@ import Loader from "./Loader.svelte";
 	<nav>
 		<h1>{title}</h1>
 		{#if date}
-			<DateFilter decade={1730} on:navigation="{dateFilterChanged}"/>
+			<DateFilter decade={activeDecade} on:navigation="{dateFilterChanged}"/>
 		{/if}
 	</nav>
-	{#if items.length > 0}
+	{#if activeItems.length > 0 }
 		<div class="container">
-			{#each items as item}
+			{#each activeItems as item}
 				<a href={item.link} target="_blank">
 					<img src={item.image} alt="{item.title}" />
 				</a>
