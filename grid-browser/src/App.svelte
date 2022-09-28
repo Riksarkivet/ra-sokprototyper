@@ -73,7 +73,26 @@ import Loader from "./Loader.svelte";
 	}
 
 	let manifest = new URLSearchParams(window.location.search).get("manifest");
-	traverse(manifest);
+	
+	if (manifest) {
+		traverse(manifest);
+	} else {
+		title = 'Riksarkivet';
+	}
+
+
+	let inputManifest;
+	function loadFromManifestInput() {
+		traverse(inputManifest);
+		window.history.pushState(
+			{},
+			"",
+			`?manifest=${inputManifest}`
+		);
+	}
+	
+
+
 	let date = new URLSearchParams(window.location.search).get("date");
 
 	function dateFilterChanged(event) {
@@ -97,8 +116,14 @@ import Loader from "./Loader.svelte";
 				</a>
 			{/each}
 		</div>
-	{:else}
+	{:else if manifest}
 		<Loader />
+	{:else}
+	<form on:submit|preventDefault="{loadFromManifestInput}">
+		<label for="iiif-input">IIIF Manifest</label>
+		<input id="iiif-input" type="url" placeholder="https://lbiiif.riksarkivet.se/collection/arkiv/8XCsKmH8XKATnPaXVPaWf2" bind:value="{inputManifest}" />
+		<button type="submit">Ladda</button>
+	</form>
 	{/if}
 </main>
 
