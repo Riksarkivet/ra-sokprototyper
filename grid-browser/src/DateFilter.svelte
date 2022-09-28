@@ -1,6 +1,8 @@
 <script>
     import { createEventDispatcher } from 'svelte';
     export let decade = 1750;
+    export let canNavigateBack;
+    export let canNavigateForward;
 
     const dispatch = createEventDispatcher();
     function previousDecade() { dispatch('navigation', { 'action': 'previous' })};
@@ -9,7 +11,7 @@
 
 <nav>
     <div>
-        <button on:click="{previousDecade}">&lt;</button> {decade} <button on:click="{nextDecade}">&gt;</button>
+        {#if canNavigateBack}<button on:click="{previousDecade}">&#9664;</button>{/if}<span>{ decade }</span>{#if canNavigateForward}<button on:click="{nextDecade}">&#9654;</button>{/if}
     </div>
 </nav>
 
@@ -21,6 +23,12 @@ nav {
 	font-size: larger;
 }
 
+div {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
 button {
 	border: none;
 	margin: 0;
@@ -30,5 +38,15 @@ button {
 	font-size: larger;
 	cursor: pointer;
 	line-height: normal;
+	transform: scale(0.7);
+}
+
+button:hover, button:focus {
+	transform: scale(0.8);
+}
+
+span {
+	font-size: 140%;
+	margin: 0 3px;
 }
 </style>

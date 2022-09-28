@@ -19,7 +19,7 @@
 				date = item.value.none[0];
 
 				// we allways try to get the decade as to avoid computing it on the fly during filtering
-				if (date.length == 4) { // parseInt is too forgiving on its own
+				if (date.length == 4 && !isNaN(date)) { // parseInt is too forgiving on its own
 					decade = Math.floor(parseInt(date)/10)*10;
 				} else {
 					decade = null;
@@ -108,22 +108,37 @@
 
 	let activeDecade = 0;
 	let decades;
+	let previousDecade;
+	let nextDecade;
 	beforeUpdate(() => {
 		if (date) {
-			// find the median existing decade in items
-			decades = allItems.map(item => item.decade).sort();
-			activeDecade = decades[Math.floor(decades.length / 2)];
+			// we use the median existing decade as a starting point
+			decades = [...new Set(allItems.map(item => item.decade))].sort();
+			const medianDecade = decades[Math.floor(decades.length / 2)];
+			if (!userHasInteracted) activeDecade = medianDecade;
 
-			activeItems = allItems.filter(item => item.decade === activeDecade);
-			console.log(activeItems)
+			filterDate();
 		} else {
 			activeItems = allItems;
 		}
 	});
 
+	function filterDate() {
+		activeItems = allItems.filter(item => item.decade === activeDecade);
+		previousDecade = decades[decades.indexOf(activeDecade) - 1];
+		nextDecade = decades[decades.indexOf(activeDecade) + 1];
+	}
+
+	let userHasInteracted = false;
 	function dateFilterChanged(event) {
-		let navigation = event.detail.action;
-		console.log(navigation);
+		const navigation = event.detail.action;
+		userHasInteracted = true;
+		if (navigation == 'previous') {
+			activeDecade = previousDecade;
+		} else {
+			activeDecade = nextDecade;
+		}
+		filterDate();
 	}
 </script>
 
@@ -131,7 +146,7 @@
 	<nav>
 		<h1>{title}</h1>
 		{#if date}
-			<DateFilter decade={activeDecade} on:navigation="{dateFilterChanged}"/>
+			<DateFilter decade={activeDecade} canNavigateBack={previousDecade} canNavigateForward={nextDecade} on:navigation="{dateFilterChanged}"/>
 		{/if}
 	</nav>
 	{#if activeItems.length > 0 }
