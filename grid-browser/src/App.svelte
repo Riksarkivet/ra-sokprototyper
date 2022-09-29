@@ -21,6 +21,11 @@
 				// we allways try to get the decade as to avoid computing it on the fly during filtering
 				if (date.length == 4 && !isNaN(date)) { // parseInt is too forgiving on its own
 					decade = Math.floor(parseInt(date)/10)*10;
+				// parse year ranges and of the form 1700-1709 and if the two years is in the same decade add oy
+				} else if (date.length == 9 && date[4] == "-" && !isNaN(date.substring(0,4)) && !isNaN(date.substring(5,9))) {
+					if (Math.floor(parseInt(date.substring(0,4))/10)*10 === Math.floor(parseInt(date.substring(5,9))/10)*10) {
+						decade = Math.floor(parseInt(date.substring(0,4))/10)*10;
+					}
 				} else {
 					decade = null;
 				}
