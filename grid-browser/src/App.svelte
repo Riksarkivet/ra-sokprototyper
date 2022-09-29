@@ -86,7 +86,8 @@
 	let manifest = new URLSearchParams(window.location.search).get("manifest");
 	
 	if (manifest) {
-		traverse(manifest);
+		manifest.split(",").forEach(m => traverse(m));
+		
 	} else {
 		title = 'Riksarkivet';
 	}
@@ -94,7 +95,7 @@
 
 	let inputManifest;
 	function loadFromManifestInput() {
-		traverse(inputManifest);
+		inputManifest.split(",").forEach(m => traverse(m));
 		window.history.pushState(
 			{},
 			"",
