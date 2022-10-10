@@ -156,12 +156,14 @@
 		{/if}
 	</nav>
 	{#if activeItems.length > 0 }
-		<div class="container">
-			{#each activeItems as item}
-				<a href={item.link} target="_blank">
-					<img src={item.image} alt="{item.title}" />
-				</a>
-			{/each}
+		<div class="container-background">
+			<div class="container">
+				{#each activeItems as item}
+					<a href={item.link} target="_blank">
+						<img src={item.image} alt="{item.title}" />
+					</a>
+				{/each}
+			</div>
 		</div>
 	{:else if manifest}
 		<Loader />
@@ -183,6 +185,12 @@ nav {
 .container {
 	display: grid;
 	grid-template-columns: repeat(8, 1fr);
+	grid-gap: 1em;
+}
+
+.container-background {
+	background-color: #0b151f;
+	padding: 1em;
 }
 
 .container a {
