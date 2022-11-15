@@ -1,7 +1,11 @@
 <script>
 	import DateFilter from "./DateFilter.svelte";
 	import Loader from "./Loader.svelte";
-	import { beforeUpdate } from 'svelte';
+	import { beforeUpdate } from "svelte";
+	import Modal from "./Modal.svelte";
+
+	let isModalOpen = false;
+	let currentCanvas;
 
 	let allItems = [];
 	let activeItems = [];
@@ -146,6 +150,15 @@
 		}
 		filterDate();
 	}
+
+	function openModal(newCanvas) {
+		currentCanvas = newCanvas;
+		isModalOpen = true;
+	}
+
+	function closeModal() {
+		isModalOpen = false;
+	}
 </script>
 
 <main>
@@ -159,9 +172,9 @@
 		<div class="container-background">
 			<div class="container">
 				{#each activeItems as item}
-					<a href={item.link} target="_blank">
+					<button title={item.title} on:click={openModal(item.image)}>
 						<img src={item.image} alt="{item.title}" />
-					</a>
+					</button>
 				{/each}
 			</div>
 		</div>
@@ -173,6 +186,9 @@
 		<input id="iiif-input" type="url" placeholder="https://lbiiif.riksarkivet.se/collection/arkiv/8XCsKmH8XKATnPaXVPaWf2" bind:value="{inputManifest}" />
 		<button type="submit">Ladda</button>
 	</form>
+	{/if}
+	{#if isModalOpen}
+		<Modal currentCanvas={currentCanvas} isModalOpen={isModalOpen} on:modal-close="{closeModal}" />
 	{/if}
 </main>
 
@@ -193,12 +209,15 @@ nav {
 	padding: 1em;
 }
 
-.container a {
+.container button {
 	overflow: hidden;
 	aspect-ratio: 1;
+	background: none;
+	border: none;
+	cursor: pointer;
 }
 
-.container a > img {
+.container button > img {
 	width: 100%;
 }
 
