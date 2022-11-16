@@ -27,10 +27,17 @@
         map.remove();
         map = null;
     });
+
+    function handleKeydown(event) {
+        if (event.key === 'Escape') {
+            close();
+        }
+    }
 </script>
 
 <div id="background" on:click={close}></div>
 <div id="modal"></div>
+<svelte:window on:keydown={handleKeydown}/>
 
 <style>
 #background {
