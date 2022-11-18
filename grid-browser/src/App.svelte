@@ -181,11 +181,15 @@
 	{:else if manifest}
 		<Loader />
 	{:else}
-	<form on:submit|preventDefault="{loadFromManifestInput}">
-		<label for="iiif-input">IIIF Manifest</label><br>
-		<input id="iiif-input" type="url" placeholder="https://lbiiif.riksarkivet.se/collection/arkiv/8XCsKmH8XKATnPaXVPaWf2" bind:value="{inputManifest}" /><br>
-		<button type="submit">Ladda</button>
-	</form>
+	<details>
+		<summary>Eget IIIF Manifest</summary>
+		<form on:submit|preventDefault="{loadFromManifestInput}">
+			<label for="iiif-input">IIIF Manifest</label><br>
+			<input id="iiif-input" type="url" placeholder="https://lbiiif.riksarkivet.se/collection/arkiv/8XCsKmH8XKATnPaXVPaWf2" bind:value="{inputManifest}" /><br>
+			<button type="submit">Ladda</button>
+		</form>
+	</details>
+	
 	{/if}
 	{#if isModalOpen}
 		<Modal currentCanvas={currentCanvas} isModalOpen={isModalOpen} on:modal-close="{closeModal}" />
@@ -197,6 +201,23 @@ nav {
 	padding: 0 10px;
 	border-bottom: 6px solid var(--ra-blue-main);
 }
+
+details {
+	margin: 1em;
+	border-radius: 4px;
+	padding: .5em .5em 0;
+}
+
+summary {
+	font-weight: bold;
+	margin: -.5em -.5em 0;
+	padding: .5em;
+}
+
+details[open] {
+	padding: .5em;
+}
+
 
 .container {
 	display: grid;
