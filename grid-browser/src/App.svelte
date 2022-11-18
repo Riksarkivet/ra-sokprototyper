@@ -3,6 +3,7 @@
 	import Loader from "./Loader.svelte";
 	import { beforeUpdate } from "svelte";
 	import Modal from "./Modal.svelte";
+	import Block from "./Block.svelte";
 
 	let isModalOpen = false;
 	let currentCanvas;
@@ -36,7 +37,7 @@
 			}
 		});
 
-		data.items.forEach((item) => {
+		data.items.forEach((item) => {    
 			if (item.type == "Canvas") {
 				let image = item.id.replace(
 					"/canvas",
@@ -181,6 +182,12 @@
 	{:else if manifest}
 		<Loader />
 	{:else}
+	
+	<Block title="Handritade Kartverk" thumbnail="https://lbiiif.riksarkivet.se/arkis!K0037920_00001/square/350,/0/default.jpg" manifest="https://lbiiif.riksarkivet.se/collection/arkiv/AwBKLPUAqqUGtNLGHo3lq0"/>
+	<Block title="Marinens ritningar" thumbnail="https://lbiiif.riksarkivet.se/arkis!K0035322_00001/square/350,/0/default.jpg" manifest="https://lbiiif.riksarkivet.se/collection/arkiv/lAELykjdz1EZN9cxABCer7"/>
+	<Block title="001 Jacob Gillberg: svenska och finska uniformer" thumbnail="https://lbiiif.riksarkivet.se/arkis!K0038337_00001/square/350,/0/default.jpg" manifest="https://lbiiif.riksarkivet.se/collection/arkiv/8XCsKmH8XKATnPaXVPaWf2"/>
+	<Block title="K Fotografier" thumbnail="https://lbiiif.riksarkivet.se/arkis!Z0000195_00001/square/350,/0/default.jpg" manifest="https://lbiiif.riksarkivet.se/collection/arkiv/vdLhUFT8rH6cxG02H087k3"/>
+
 	<details>
 		<summary>Eget IIIF Manifest</summary>
 		<form on:submit|preventDefault="{loadFromManifestInput}">
@@ -206,6 +213,7 @@ details {
 	margin: 1em;
 	border-radius: 4px;
 	padding: .5em .5em 0;
+	clear: both;
 }
 
 summary {
