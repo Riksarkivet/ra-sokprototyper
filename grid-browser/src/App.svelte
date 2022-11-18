@@ -182,8 +182,8 @@
 		<Loader />
 	{:else}
 	<form on:submit|preventDefault="{loadFromManifestInput}">
-		<label for="iiif-input">IIIF Manifest</label>
-		<input id="iiif-input" type="url" placeholder="https://lbiiif.riksarkivet.se/collection/arkiv/8XCsKmH8XKATnPaXVPaWf2" bind:value="{inputManifest}" />
+		<label for="iiif-input">IIIF Manifest</label><br>
+		<input id="iiif-input" type="url" placeholder="https://lbiiif.riksarkivet.se/collection/arkiv/8XCsKmH8XKATnPaXVPaWf2" bind:value="{inputManifest}" /><br>
 		<button type="submit">Ladda</button>
 	</form>
 	{/if}
