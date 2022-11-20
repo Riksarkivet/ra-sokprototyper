@@ -4,7 +4,7 @@
 	export let manifest;
 </script>
 
-<a class="btn btn-block" href="/?manifest={manifest}">
+<a class="btn btn-block" href="?manifest={manifest}">
 	<img aria-hidden="true" src="{thumbnail}">
 	<span>{title}</span>
 </a>
