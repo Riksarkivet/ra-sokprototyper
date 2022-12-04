@@ -183,6 +183,7 @@
 		<Loader />
 	{:else}
 	
+	<h2>Urval</h2>
 	<Block title="Handritade Kartverk" thumbnail="https://lbiiif.riksarkivet.se/arkis!K0037920_00001/square/350,/0/default.jpg" manifest="https://lbiiif.riksarkivet.se/collection/arkiv/AwBKLPUAqqUGtNLGHo3lq0"/>
 	<Block title="Marinens ritningar" thumbnail="https://lbiiif.riksarkivet.se/arkis!K0035322_00001/square/350,/0/default.jpg" manifest="https://lbiiif.riksarkivet.se/collection/arkiv/lAELykjdz1EZN9cxABCer7"/>
 	<Block title="001 Jacob Gillberg: svenska och finska uniformer" thumbnail="https://lbiiif.riksarkivet.se/arkis!K0038337_00001/square/350,/0/default.jpg" manifest="https://lbiiif.riksarkivet.se/collection/arkiv/8XCsKmH8XKATnPaXVPaWf2"/>
