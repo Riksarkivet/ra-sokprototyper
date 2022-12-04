@@ -20,6 +20,10 @@ body {
 	margin: 0;
 }
 
+main {
+	padding: 0rem 1rem;
+}
+
 h1, h2, h3 {
 	font-family: var(--ra-font-family-headers);
 	line-height: 1.3;

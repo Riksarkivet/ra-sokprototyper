@@ -162,13 +162,13 @@
 	}
 </script>
 
+<nav>
+	<h1>{title}</h1>
+	{#if date}
+		<DateFilter decade={activeDecade} canNavigateBack={previousDecade} canNavigateForward={nextDecade} on:navigation="{dateFilterChanged}"/>
+	{/if}
+</nav>
 <main>
-	<nav>
-		<h1>{title}</h1>
-		{#if date}
-			<DateFilter decade={activeDecade} canNavigateBack={previousDecade} canNavigateForward={nextDecade} on:navigation="{dateFilterChanged}"/>
-		{/if}
-	</nav>
 	{#if activeItems.length > 0 }
 		<div class="container-background">
 			<div class="container">

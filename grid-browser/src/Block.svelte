@@ -19,7 +19,7 @@ a {
 	text-align: center;
 	line-height: 1.7;
 	border-bottom: 8px solid #e8a621;
-	margin: .5em;
+	margin: 0rem .5rem .5rem 0rem;
 	float: left;
 }
 
