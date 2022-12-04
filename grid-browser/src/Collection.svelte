@@ -4,6 +4,7 @@
 	export let collection;
 
 	let subCollections;
+	let hasLoaded;;
 	fetch(collection)
 		.then((response) => {
 			return response.json();
@@ -17,11 +18,13 @@
 					type: item.type,
 				}
 			});
+			hasLoaded = true;
 		});
 </script>
 
 <div>
 	{#if subCollections && subCollections.length > 0}
+	<div class="columns">
 		{#each subCollections as item}
 			{#if item.type === "Collection"}
 				<a href="?collection={item.id}">
@@ -33,15 +36,21 @@
 				</a>
 			{/if}
 		{/each}
+	</div>
+	{:else if hasLoaded}
+		<p>Inga publika arkiv.</p>
 	{:else}
 		<Loader />
 	{/if}
 </div>
 
 <style>
+	.columns {
+		columns: 4 200px;
+	}
+
 	a {
-		width: 200px;
-		display: block;
+		display: grid;
 		background: #e8a621;
 		color: black;
 		text-decoration: none;
@@ -49,7 +58,6 @@
 		line-height: 1.7;
 		padding: 8px 0px;
 		margin: 0rem .5rem .5rem 0rem;
-		float: left;
 	}
 	
 	a:hover, a:focus, a:active {

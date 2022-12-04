@@ -246,6 +246,8 @@ details[open] {
 .container-background {
 	background-color: #0b151f;
 	padding: 1em;
+	min-height: calc(100vh - 82px);
+	padding-bottom: 0;
 }
 
 .container button {
