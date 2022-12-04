@@ -4,6 +4,7 @@
 	import { beforeUpdate } from "svelte";
 	import Modal from "./Modal.svelte";
 	import Block from "./Block.svelte";
+	import Collection from "./Collection.svelte";
 
 	let isModalOpen = false;
 	let currentCanvas;
@@ -37,7 +38,7 @@
 			}
 		});
 
-		data.items.forEach((item) => {    
+		data.items.forEach((item) => {
 			if (item.type == "Canvas") {
 				let image = item.id.replace(
 					"/canvas",
@@ -102,6 +103,8 @@
 		title = 'Riksarkivet';
 	}
 
+	let collection = new URLSearchParams(window.location.search).get("collection");
+	collection = collection ? collection : "https://lbiiif.riksarkivet.se/collection/riksarkivet";
 
 	let inputManifest;
 	function loadFromManifestInput() {
@@ -112,8 +115,6 @@
 			`?manifest=${inputManifest}`
 		);
 	}
-	
-
 
 	let date = new URLSearchParams(window.location.search).get("date");
 
@@ -198,6 +199,9 @@
 				<button type="submit">Ladda</button>
 			</form>
 		</details>
+
+		<h2>Utforska</h2>
+		<Collection collection={collection}/>
 	</div>
 	
 	{/if}
