@@ -3,6 +3,14 @@
 
 	export let collection;
 
+
+	function getThumbnail(uri) {
+		const indexId = uri.endsWith("/manifest") ? uri.replace('https://lbiiif.riksarkivet.se/arkis!', '').replace('/manifest', '') : uri.replace('https://lbiiif.riksarkivet.se/collection/arkiv/', '');
+
+		console.log(window.imageIndex[indexId] ? window.imageIndex[indexId] : false)
+		return window.imageIndex[indexId] ? window.imageIndex[indexId] : false;
+	}
+
 	let subCollections;
 	let hasLoaded;;
 	fetch(collection)
@@ -16,6 +24,7 @@
 					id: item.id,
 					label: item.label.sv[0],
 					type: item.type,
+					thumbnail: getThumbnail(item.id),
 				}
 			});
 			hasLoaded = true;
@@ -28,10 +37,16 @@
 		{#each subCollections as item}
 			{#if item.type === "Collection"}
 				<a href="?collection={item.id}">
+					{#if item.thumbnail}
+						<img aria-hidden="true" src="https://lbiiif.riksarkivet.se/arkis!{item.thumbnail}/square/350,/0/default.jpg">
+					{/if}
 					{item.label}
 				</a>
 			{:else if item.type === "Manifest"}
 				<a href="?manifest={item.id}">
+					{#if item.thumbnail}
+						<img aria-hidden="true" src="https://lbiiif.riksarkivet.se/arkis!{item.thumbnail}/square/350,/0/default.jpg">
+					{/if}
 					{item.label}
 				</a>
 			{/if}
@@ -50,7 +65,7 @@
 	}
 
 	a {
-		display: grid;
+		display: inline-block;
 		background: #e8a621;
 		color: black;
 		text-decoration: none;
@@ -62,5 +77,9 @@
 	
 	a:hover, a:focus, a:active {
 		background: #f4ca47;
+	}
+
+	img {
+		width: 100%;
 	}
 </style>
