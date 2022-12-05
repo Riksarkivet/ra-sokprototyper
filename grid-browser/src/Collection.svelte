@@ -72,6 +72,7 @@
 		text-align: center;
 		line-height: 1.7;
 		padding: 8px 0px;
+		width: 100%;
 		margin: 0rem .5rem .5rem 0rem;
 	}
 	
