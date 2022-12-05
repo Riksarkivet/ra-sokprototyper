@@ -62,6 +62,7 @@
 <style>
 	.columns {
 		columns: 4 200px;
+		max-width: 900px;
 	}
 
 	a {
