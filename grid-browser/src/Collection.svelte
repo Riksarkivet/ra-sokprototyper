@@ -74,6 +74,7 @@
 		padding: 8px 0px;
 		width: 100%;
 		margin: 0rem .5rem .5rem 0rem;
+		max-width: 200px;
 	}
 	
 	a:hover, a:focus, a:active {
