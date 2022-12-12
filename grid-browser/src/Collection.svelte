@@ -5,7 +5,7 @@
 
 
 	function getThumbnail(uri) {
-		const indexId = uri.endsWith("/manifest") ? uri.replace('https://lbiiif.riksarkivet.se/arkis!', '').replace('/manifest', '') : uri.replace('https://lbiiif.riksarkivet.se/collection/arkiv/', '');
+		const indexId = uri.endsWith("/manifest") ? uri.replace('https://lbiiif.riksarkivet.se/arkis!', '').replace('/manifest', '') : uri.replace('https://lbiiif.riksarkivet.se/', '');
 
 		console.log(window.imageIndex[indexId] ? window.imageIndex[indexId] : false)
 		return window.imageIndex[indexId] ? window.imageIndex[indexId] : false;
