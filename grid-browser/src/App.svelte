@@ -169,9 +169,9 @@
 		<DateFilter decade={activeDecade} canNavigateBack={previousDecade} canNavigateForward={nextDecade} on:navigation="{dateFilterChanged}"/>
 	{/if}
 </nav>
-<main>
+<main class="dark">
 	{#if activeItems.length > 0 }
-		<div class="container-background">
+		<div class="container-background dark">
 			<div class="container">
 				{#each activeItems as item}
 					<button title={item.title} on:click={openModal(item.image)}>
@@ -186,7 +186,7 @@
 	
 	<div class="browser-container">
 		<div class="responsive-container">
-			<h2>Urval</h2>
+			<h2 style="margin-top: 0;padding-top: 17px;">Urval</h2>
 			<div class="columns">
 				<Block title="Handritade Kartverk" thumbnail="https://lbiiif.riksarkivet.se/arkis!K0037920_00001/square/350,/0/default.jpg" manifest="https://lbiiif.riksarkivet.se/collection/arkiv/AwBKLPUAqqUGtNLGHo3lq0"/>
 				<Block title="Marinens ritningar" thumbnail="https://lbiiif.riksarkivet.se/arkis!K0035322_00001/square/350,/0/default.jpg" manifest="https://lbiiif.riksarkivet.se/collection/arkiv/lAELykjdz1EZN9cxABCer7"/>
@@ -225,19 +225,15 @@ nav {
 }
 
 details {
-	margin: 1em;
+	margin: 0;
 	border-radius: 4px;
-	padding: .5em .5em 0;
+	padding: 2em 0;
 	clear: both;
 }
 
 summary {
 	font-weight: bold;
 	margin: -.5em -.5em 0;
-	padding: .5em;
-}
-
-details[open] {
 	padding: .5em;
 }
 
@@ -252,7 +248,6 @@ details[open] {
 }
 
 .container-background {
-	background-color: #0b151f;
 	padding: 1em;
 	min-height: calc(100vh - 82px);
 	padding-bottom: 0;

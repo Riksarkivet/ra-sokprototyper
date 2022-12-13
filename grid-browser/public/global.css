@@ -19,6 +19,11 @@ body {
 	margin: 0;
 }
 
+.dark {
+	background-color: #0b151f;
+	color: #fff;
+}
+
 h1, h2, h3 {
 	font-family: var(--ra-font-family-headers);
 	line-height: 1.3;
