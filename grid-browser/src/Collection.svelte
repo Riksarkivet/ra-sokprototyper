@@ -33,7 +33,7 @@
 
 <div>
 	{#if subCollections && subCollections.length > 0}
-	<div class="columns">
+	<div class="columns responsive-container">
 		{#each subCollections as item}
 			{#if item.type === "Collection"}
 				<a href="?collection={item.id}">
@@ -60,26 +60,22 @@
 </div>
 
 <style>
-	.columns {
-		columns: 4 200px;
-		max-width: 900px;
-	}
-
 	a {
-		display: inline-block;
+		width: 200px;
+		display: block;
 		background: #e8a621;
 		color: black;
 		text-decoration: none;
 		text-align: center;
 		line-height: 1.7;
-		padding: 8px 0px;
-		width: 100%;
+		border-bottom: 8px solid #e8a621;
 		margin: 0rem .5rem .5rem 0rem;
-		max-width: 200px;
+		float: left;
 	}
 	
 	a:hover, a:focus, a:active {
 		background: #f4ca47;
+		border-bottom: 8px solid #f4ca47;
 	}
 
 	img {

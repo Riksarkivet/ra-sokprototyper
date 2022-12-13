@@ -25,6 +25,35 @@ h1, h2, h3 {
 	font-weight: 500;
 }
 
+.columns {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+	grid-gap: 1em;
+}
+
+.responsive-container {
+	width: 100%;
+	margin: auto;
+}
+
+@media (min-width: 769px) {
+	.responsive-container {
+		width: 100%;
+	}
+}
+
+@media (min-width: 1024px) {
+	.responsive-container {
+		width: 850px;
+	}
+}
+
+@media (min-width: 1140px) {
+	.responsive-container {
+		width: 1000px;
+	}
+}
+
 form {
 	padding: 1em;
 }
