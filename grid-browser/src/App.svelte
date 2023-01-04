@@ -252,7 +252,6 @@ summary {
 
 .container-background {
 	padding: 1em;
-	min-height: calc(100vh - 82px);
 	padding-bottom: 0;
 }
 

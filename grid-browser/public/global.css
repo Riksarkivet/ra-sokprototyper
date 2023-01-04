@@ -22,6 +22,7 @@ body {
 .dark {
 	background-color: #0b151f;
 	color: #fff;
+	min-height: calc(100vh - 82px);
 }
 
 h1, h2, h3 {
