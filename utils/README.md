@@ -20,6 +20,6 @@ Basic SPARQL query for listing IIIF metadata entries for a given manifest.
 
 SPARQL query that parses IIIF metadata and outputs a canvas level table.
 
-## `iiif-image-index-builder.ipynb`
+## `iiif-image-index-builder.py`
 
-Notebook for building the image index needed for displaying images in grid-browser's "browse" mode.
+Python script for building the image index needed for displaying images in grid-browser's "browse" mode.
