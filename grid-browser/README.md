@@ -2,7 +2,7 @@
 
 Svelte application for browsing media from IIIF collections and manifests.
 
-## Setup
+## Development setup
 
 Install the dependencies...
 
@@ -17,13 +17,13 @@ npm install
 npm run dev
 ```
 
-Navigate to [localhost:8080?manifest=https://lbiiif.riksarkivet.se/collection/arkiv/AwBKLPUAqqUGtNLGHo3lq0](http://localhost:8080?manifest=https://lbiiif.riksarkivet.se/collection/arkiv/AwBKLPUAqqUGtNLGHo3lq0). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+Navigate to [localhost:8080](http://localhost:8080). You should see the app running.
 
 By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
 
 ## Building and running in production mode
 
-To create an optimised version of the app:
+To create an optimized version of the app:
 
 ```bash
 npm run build
@@ -42,50 +42,25 @@ If you're building a single-page app (SPA) with multiple routes, sirv needs to b
 "start": "sirv public --single"
 ```
 
-## Using TypeScript
+## URL usage
 
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
+The application can be used with the following URL parameters. If none are given the application will enter "browsing" mode and show the root collection.
 
-```bash
-node scripts/setupTypeScript.js
-```
+ - `manifest` - URL to an IIIF manifest or collection to show in "dark table" mode. Note that you can stack URIs by comma separation to combine multiple manifests/collections.
+ - `date=true` - Show date slider in "dark table" mode. This parameter will filter out all items which can't be dated, you might end up with an empty page if not careful.
+ - `collection` - URL to an IIIF collection to start from in "browsing" mode.
 
-Or remove the script via:
+## Configure curated collections
 
-```bash
-rm scripts/setupTypeScript.js
-```
+When both in "browsing" mode and without the `collection` parameter set, the application will show a curated list of collections.
 
-If you want to use `baseUrl` or `path` aliases within your `tsconfig`, you need to set up `@rollup/plugin-alias` to tell Rollup to resolve the aliases. For more info, see [this StackOverflow question](https://stackoverflow.com/questions/63427935/setup-tsconfig-path-in-svelte).
+These can be configured in [`App.svelte`](https://github.com/Abbe98/ra-sokprototyper/blob/3fd67754a14044ec34ccf244a72ed0e8197309b5/grid-browser/src/App.svelte#L192-L195). Each entry is a `<Block>` component with the following properties, the last one being optional:
 
-## Deploying to the web
-
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-vercel deploy --name my-project
-```
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
+```html
+<Block
+  title="Marinens ritningar"
+  thumbnail="https://lbiiif.riksarkivet.se/arkis!K0035322_00001/square/350,/0/default.jpg"
+  manifest="https://lbiiif.riksarkivet.se/collection/arkiv/lAELykjdz1EZN9cxABCer7"
+  timeline="true"
+/>
 ```
