@@ -1,0 +1,19 @@
+#title: All locations in a given parish
+#tags: map
+
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT DISTINCT
+  ?tora
+  ?markerColor
+  # coordinates in Tora are strings using "," as decimal separator
+  (REPLACE(?wgs84_lat, ",", ".") AS ?lat)
+  (REPLACE(?wgs84_lon, ",", ".") AS ?lon)
+WHERE {
+  ?tora <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?wgs84_lat ;
+        <http://www.w3.org/2003/01/geo/wgs84_pos#long> ?wgs84_lon ;
+        dcterms:isPartOf <https://data.riksarkivet.se/tora/modernparish/058204000> . # change this parish as needed
+  
+  BIND("#e8a621" AS ?markerColor) # replace the default marker color
+}

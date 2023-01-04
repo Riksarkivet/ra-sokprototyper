@@ -1,0 +1,12 @@
+#title: Get thumbnails for all RA sources referencing a given unit
+#tags: image-grid
+
+PREFIX dcterms: <http://purl.org/dc/terms/>
+
+SELECT DISTINCT * WHERE {
+  ?source dcterms:references <https://data.riksarkivet.se/tora/235> ; 
+          dcterms:source ?sourceMedia .
+
+  FILTER(STRSTARTS(STR(?sourceMedia), "https://sok.riksarkivet.se/bildvisning/"))
+  BIND(CONCAT(REPLACE(STR(?sourceMedia), "https://sok.riksarkivet.se/bildvisning/", "https://lbiiif.riksarkivet.se/v2/arkis!"), "/square/350,/0/default.jpg") AS ?thumbnail)
+}
