@@ -2,6 +2,11 @@
 	export let title;
 	export let thumbnail;
 	export let manifest;
+	export let timeline = false;
+
+	if (timeline) {
+		manifest += "&date=true"
+	}
 </script>
 
 <a class="btn btn-block" href="?manifest={manifest}">

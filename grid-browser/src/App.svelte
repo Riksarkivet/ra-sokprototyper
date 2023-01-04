@@ -190,7 +190,7 @@
 				<h2 style="margin-top: 0;padding-top: 17px;">Urval</h2>
 				<div class="columns">
 					<Block title="Handritade Kartverk" thumbnail="https://lbiiif.riksarkivet.se/arkis!K0037920_00001/square/350,/0/default.jpg" manifest="https://lbiiif.riksarkivet.se/collection/arkiv/AwBKLPUAqqUGtNLGHo3lq0"/>
-					<Block title="Marinens ritningar" thumbnail="https://lbiiif.riksarkivet.se/arkis!K0035322_00001/square/350,/0/default.jpg" manifest="https://lbiiif.riksarkivet.se/collection/arkiv/lAELykjdz1EZN9cxABCer7"/>
+					<Block title="Marinens ritningar" thumbnail="https://lbiiif.riksarkivet.se/arkis!K0035322_00001/square/350,/0/default.jpg" manifest="https://lbiiif.riksarkivet.se/collection/arkiv/lAELykjdz1EZN9cxABCer7" timeline="true"/>
 					<Block title="001 Jacob Gillberg: svenska och finska uniformer" thumbnail="https://lbiiif.riksarkivet.se/arkis!K0038337_00001/square/350,/0/default.jpg" manifest="https://lbiiif.riksarkivet.se/collection/arkiv/8XCsKmH8XKATnPaXVPaWf2"/>
 					<Block title="K Fotografier" thumbnail="https://lbiiif.riksarkivet.se/arkis!Z0000195_00001/square/350,/0/default.jpg" manifest="https://lbiiif.riksarkivet.se/collection/arkiv/vdLhUFT8rH6cxG02H087k3"/>
 				</div>
