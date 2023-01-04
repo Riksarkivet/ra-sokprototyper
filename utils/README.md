@@ -19,4 +19,7 @@ Basic SPARQL query for listing IIIF metadata entries for a given manifest.
 ## `graph_to_canvas_table.rq`
 
 SPARQL query that parses IIIF metadata and outputs a canvas level table.
- 
+
+## `iiif-image-index-builder.ipynb`
+
+Notebook for building the image index needed for displaying images in grid-browser's "browse" mode.
