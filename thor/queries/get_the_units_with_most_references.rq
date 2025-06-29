@@ -1,0 +1,12 @@
+#title:Get the units with most references
+#defaultView:Table
+PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT (COUNT(?source) AS ?source_count) ?unitLabel ?unit WHERE {
+  ?source dcterms:references ?unit .
+  ?unit skos:prefLabel ?unitLabel .
+}
+GROUP BY ?unit ?unitLabel
+ORDER BY DESC(?source_count)
+LIMIT 100

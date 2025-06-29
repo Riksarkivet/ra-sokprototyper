@@ -1,12 +1,15 @@
-#title:Get thumbnails for all RA sources referencing a given unit
-#tags: image-grid
-#defaultView:ImageGrid
+#title:Images in the National Archives referencing the most units
 PREFIX dcterms: <http://purl.org/dc/terms/>
-
-SELECT DISTINCT * WHERE {
-  ?source dcterms:references <https://data.riksarkivet.se/tora/2528> ; 
-          dcterms:source ?sourceMedia .
+SELECT DISTINCT
+  ?sourceMedia
+  (COUNT(?unit) AS ?unit_count)
+WHERE {
+  ?source dcterms:source ?sourceMedia .
 
   FILTER(STRSTARTS(STR(?sourceMedia), "https://sok.riksarkivet.se/bildvisning/"))
   BIND(CONCAT(REPLACE(STR(?sourceMedia), "https://sok.riksarkivet.se/bildvisning/", "https://lbiiif.riksarkivet.se/v2/arkis!"), "/square/350,/0/default.jpg") AS ?thumbnail)
+  
+  ?source dcterms:references ?unit .
 }
+GROUP BY ?sourceMedia
+ORDER BY DESC(?unit_count)

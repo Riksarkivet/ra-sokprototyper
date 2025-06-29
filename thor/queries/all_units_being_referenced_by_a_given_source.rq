@@ -1,21 +1,21 @@
-#title: All locations in a given parish
-#tags: map,parish
+#title:All units being referenced by a given source
+#tags:map
 #defaultView:Map
-PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 PREFIX dcterms: <http://purl.org/dc/terms/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
 
 SELECT DISTINCT
-  ?tora
+  ?unit
   ?geometryTitle
-  ?geometryColor
   # coordinates in Tora are strings using "," as decimal separator
   (REPLACE(?wgs84_lat, ",", ".") AS ?lat)
   (REPLACE(?wgs84_lon, ",", ".") AS ?lon)
+  ?geometryColor
 WHERE {
-  ?tora <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?wgs84_lat ;
+  ?source dcterms:source <https://sok.riksarkivet.se/bildvisning/R0002568_00038> .
+  ?source dcterms:references ?unit .
+  ?unit <http://www.w3.org/2003/01/geo/wgs84_pos#lat> ?wgs84_lat ;
         <http://www.w3.org/2003/01/geo/wgs84_pos#long> ?wgs84_lon ;
-        dcterms:isPartOf <https://data.riksarkivet.se/tora/modernparish/058204000> ; # change this parish as needed
         skos:prefLabel ?geometryTitle .
-  
   BIND("#e8a621" AS ?geometryColor) # replace the default marker color
 }
