@@ -1,7 +1,7 @@
 {
     "sparql_endpoint": "https://tora.entryscape.net/store/sparql",
     "query_library_endpoint": "/config/queries.json",
-    "header_brand_content": "TORA",
+    "title": "TORA",
     "demo_tour": {
         "demo_query": "PREFIX tora: <https://data.riksarkivet.se/tora/schema/>\n\nSELECT * WHERE {\n  ?s tora:\n}",
         "demo_query_cursor_position": {
